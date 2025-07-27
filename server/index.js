@@ -8,6 +8,17 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Add error handling for uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
 // Middleware
 app.use(helmet());
 app.use(compression());
@@ -18,9 +29,15 @@ app.use(express.json());
 const staticPath = path.join(__dirname, '../build');
 const distPath = path.join(__dirname, '../client/dist');
 
+console.log('Checking static file paths:');
+console.log('Build path:', staticPath, 'exists:', require('fs').existsSync(staticPath));
+console.log('Dist path:', distPath, 'exists:', require('fs').existsSync(distPath));
+
 if (require('fs').existsSync(staticPath)) {
+  console.log('Serving static files from build directory');
   app.use(express.static(staticPath));
 } else {
+  console.log('Serving static files from client/dist directory');
   app.use(express.static(distPath));
 }
 
@@ -165,6 +182,6 @@ app.get('*', (req, res) => {
   res.sendFile(indexPath);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 }); 
