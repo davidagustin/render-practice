@@ -1,14 +1,10 @@
 services:
   - type: web
     name: elegant-furniture-store
-    runtime: node
-    plan: starter
+    runtime: static
     buildCommand: npm install && npm run build
-    startCommand: npx serve -s dist -l $PORT
+    staticPublishPath: ./dist
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3000
-    healthCheckPath: /
     autoDeploy: true 
