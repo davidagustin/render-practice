@@ -3,13 +3,7 @@ services:
     name: elegant-furniture-store
     runtime: node
     plan: starter
-    buildCommand: |
-      echo "Starting build process..."
-      npm run install-all
-      echo "Dependencies installed, building application..."
-      npm run build
-      echo "Build completed, checking build directory..."
-      ls -la build/ || echo "Build directory not found"
+    buildCommand: npm run install-all && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
