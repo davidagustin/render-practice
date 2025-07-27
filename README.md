@@ -24,7 +24,7 @@ A modern, responsive furniture store built with Vue.js 3, Vite, and Tailwind CSS
 
 ## 🚀 Live Demo
 
-Visit the live website: [Elegant Furniture Store](https://your-render-url.onrender.com)
+Visit the live website: [Elegant Furniture Store](https://render-practice-or72.onrender.com)
 
 ## 📦 Installation
 
@@ -145,7 +145,7 @@ This project is configured for deployment on Render as a Static Site.
 
 3. **Deploy**
    - Render will automatically build and deploy your site
-   - Your site will be available at: `https://your-app-name.onrender.com`
+   - Your site will be available at: `https://render-practice-or72.onrender.com`
 
 ### Manual Deployment
 
