@@ -2,6 +2,12 @@
 
 A modern, responsive furniture store built with Vue.js and Node.js, designed to be deployed on Render.
 
+## 🌐 Live Demo
+
+**🔗 [View Live Application](https://render-practice-h1t2.onrender.com/)**
+
+Experience the full furniture store with all features including product browsing, search, filtering, and shopping cart functionality.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -146,6 +152,11 @@ The following environment variables are automatically set by Render:
    - Search and filtering work
    - Product detail pages work
 
+### 🎉 Successfully Deployed!
+**Live Application**: [https://render-practice-h1t2.onrender.com/](https://render-practice-h1t2.onrender.com/)
+
+The application is now live and ready for use! 🚀
+
 ---
 
 ## 🔧 Development Scripts
@@ -180,10 +191,24 @@ node verify-deployment.js
 
 ## 📡 API Endpoints
 
+**🌐 Live API Base URL**: `https://render-practice-h1t2.onrender.com`
+
 ### Products
 - `GET /api/furniture` - Get all furniture items with optional filters
 - `GET /api/furniture/:id` - Get specific furniture item
 - `GET /api/categories` - Get all categories
+
+### Example API Calls
+```bash
+# Get all furniture
+curl https://render-practice-h1t2.onrender.com/api/furniture
+
+# Get furniture by category
+curl https://render-practice-h1t2.onrender.com/api/furniture?category=Living%20Room
+
+# Get specific furniture item
+curl https://render-practice-h1t2.onrender.com/api/furniture/1
+```
 
 ### Query Parameters
 - `category` - Filter by category
