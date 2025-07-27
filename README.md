@@ -230,4 +230,4 @@ For support, email hello@elegantfurniture.com or create an issue in this reposit
 
 ---
 
-**Built with ❤️ using Vue.js and Tailwind CSS** 
+**Built with ❤️ using Vue.js and Tailwind CSS** # Trigger deployment Sun Jul 27 05:31:13 PDT 2025
