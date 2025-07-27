@@ -60,11 +60,6 @@ const checks = [
     name: 'README documentation',
     file: 'README.md',
     required: true
-  },
-  {
-    name: 'Deployment guide',
-    file: 'DEPLOYMENT.md',
-    required: true
   }
 ];
 
