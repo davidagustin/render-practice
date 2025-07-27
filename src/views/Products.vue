@@ -8,15 +8,15 @@
       </div>
 
       <!-- Filters and Search -->
-      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <!-- Search -->
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
             <input 
               v-model="searchQuery"
-              type="text"
-              placeholder="Search by name, description, or category..."
+              type="text" 
+              placeholder="Search products..."
               class="input-field"
             >
           </div>
@@ -25,10 +25,11 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
             <select v-model="selectedCategory" class="input-field">
-              <option value="all">All Categories</option>
-              <option v-for="category in categories" :key="category" :value="category">
-                {{ category }}
-              </option>
+              <option value="">All Categories</option>
+              <option value="living-room">Living Room</option>
+              <option value="bedroom">Bedroom</option>
+              <option value="dining-room">Dining Room</option>
+              <option value="office">Office</option>
             </select>
           </div>
 
@@ -36,34 +37,31 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
             <select v-model="priceRange" class="input-field">
-              <option value="all">All Prices</option>
-              <option value="0-300">Under $300</option>
-              <option value="300-600">$300 - $600</option>
-              <option value="600-1000">$600 - $1000</option>
-              <option value="1000+">Over $1000</option>
+              <option value="">All Prices</option>
+              <option value="0-500">Under $500</option>
+              <option value="500-1000">$500 - $1,000</option>
+              <option value="1000-2000">$1,000 - $2,000</option>
+              <option value="2000+">Over $2,000</option>
             </select>
           </div>
         </div>
       </div>
 
-      <!-- Results Count -->
+      <!-- Results Count and Sort -->
       <div class="flex justify-between items-center mb-6">
-        <p class="text-gray-600">
-          Showing {{ filteredProducts.length }} of {{ furniture.length }} products
-        </p>
-        <div class="flex items-center space-x-2">
-          <span class="text-sm text-gray-600">Sort by:</span>
-          <select v-model="sortBy" class="text-sm border border-gray-300 rounded px-2 py-1">
+        <p class="text-gray-600">{{ filteredProducts.length }} products found</p>
+        <div class="flex items-center space-x-4">
+          <label class="text-sm font-medium text-gray-700">Sort by:</label>
+          <select v-model="sortBy" class="input-field w-auto">
             <option value="name">Name</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="rating">Rating</option>
           </select>
         </div>
       </div>
 
       <!-- Products Grid -->
-      <div v-if="filteredProducts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div 
           v-for="product in sortedProducts" 
           :key="product.id"
@@ -73,17 +71,18 @@
             <img 
               :src="product.image" 
               :alt="product.name"
-              class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
             >
-            <div class="absolute top-4 right-4">
-              <span 
-                :class="[
-                  'px-2 py-1 text-xs font-medium rounded-full',
-                  product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                ]"
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+            
+            <!-- Quick View Button -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <router-link 
+                :to="`/product/${product.id}`"
+                class="bg-white text-primary-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors"
               >
-                {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
-              </span>
+                Quick View
+              </router-link>
             </div>
           </div>
           
@@ -91,109 +90,81 @@
             <h3 class="font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
             <p class="text-gray-600 text-sm mb-3">{{ product.description.substring(0, 80) }}...</p>
             
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl font-bold text-primary-600">${{ product.price }}</span>
-              <div class="flex items-center">
-                <div class="flex text-yellow-400">
-                  <svg 
-                    v-for="star in 5" 
-                    :key="star"
-                    :class="[
-                      'w-4 h-4',
-                      star <= Math.floor(product.rating) ? 'fill-current' : 'fill-gray-300'
-                    ]"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                </div>
-                <span class="text-sm text-gray-600 ml-1">({{ product.reviews }})</span>
-              </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xl font-bold text-primary-600">${{ product.price }}</span>
+              <span class="text-sm text-gray-500">{{ product.category.replace('-', ' ') }}</span>
             </div>
             
-            <div class="flex gap-2">
-              <router-link 
-                :to="`/product/${product.id}`"
-                class="flex-1 btn-secondary text-center"
-              >
-                View Details
-              </router-link>
+            <div class="flex space-x-2">
               <button 
                 @click="addToCart(product)"
-                :disabled="!product.inStock"
-                :class="[
-                  'px-4 py-2 rounded-lg font-medium transition-colors',
-                  product.inStock 
-                    ? 'bg-accent-500 hover:bg-accent-600 text-white' 
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                ]"
+                class="flex-1 btn-primary text-sm"
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-                </svg>
+                Add to Cart
               </button>
+              <router-link 
+                :to="`/product/${product.id}`"
+                class="btn-secondary text-sm"
+              >
+                Details
+              </router-link>
             </div>
           </div>
         </div>
       </div>
 
       <!-- No Results -->
-      <div v-else class="text-center py-12">
+      <div v-if="filteredProducts.length === 0" class="text-center py-12">
         <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
         <h3 class="text-lg font-medium text-gray-900 mb-2">No products found</h3>
         <p class="text-gray-600">Try adjusting your search or filter criteria</p>
-        <button 
-          @click="clearFilters"
-          class="mt-4 btn-primary"
-        >
-          Clear Filters
-        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed } from 'vue'
 import { useFurnitureStore } from '../stores/furniture'
 
-const route = useRoute()
 const furnitureStore = useFurnitureStore()
 
 // Reactive data
 const searchQuery = ref('')
-const selectedCategory = ref('all')
-const priceRange = ref('all')
+const selectedCategory = ref('')
+const priceRange = ref('')
 const sortBy = ref('name')
 
 // Computed properties
-const furniture = computed(() => furnitureStore.furniture)
-const categories = computed(() => furnitureStore.categories)
-
 const filteredProducts = computed(() => {
-  let products = furniture.value
+  let products = furnitureStore.products
 
   // Search filter
   if (searchQuery.value) {
-    products = furnitureStore.searchProducts(searchQuery.value)
+    const query = searchQuery.value.toLowerCase()
+    products = products.filter(product => 
+      product.name.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query)
+    )
   }
 
   // Category filter
-  if (selectedCategory.value !== 'all') {
+  if (selectedCategory.value) {
     products = products.filter(product => product.category === selectedCategory.value)
   }
 
   // Price filter
-  if (priceRange.value !== 'all') {
+  if (priceRange.value) {
     const [min, max] = priceRange.value.split('-').map(Number)
-    if (priceRange.value === '1000+') {
-      products = products.filter(product => product.price >= 1000)
-    } else {
-      products = products.filter(product => product.price >= min && product.price <= max)
-    }
+    products = products.filter(product => {
+      if (max) {
+        return product.price >= min && product.price <= max
+      } else {
+        return product.price >= min
+      }
+    })
   }
 
   return products
@@ -203,41 +174,17 @@ const sortedProducts = computed(() => {
   const products = [...filteredProducts.value]
   
   switch (sortBy.value) {
-    case 'name':
-      return products.sort((a, b) => a.name.localeCompare(b.name))
     case 'price-low':
       return products.sort((a, b) => a.price - b.price)
     case 'price-high':
       return products.sort((a, b) => b.price - a.price)
-    case 'rating':
-      return products.sort((a, b) => b.rating - a.rating)
+    case 'name':
     default:
-      return products
+      return products.sort((a, b) => a.name.localeCompare(b.name))
   }
 })
 
-// Methods
 const addToCart = (product) => {
   furnitureStore.addToCart(product)
 }
-
-const clearFilters = () => {
-  searchQuery.value = ''
-  selectedCategory.value = 'all'
-  priceRange.value = 'all'
-  sortBy.value = 'name'
-}
-
-// Watch for route query parameters
-onMounted(() => {
-  if (route.query.category) {
-    selectedCategory.value = route.query.category
-  }
-})
-
-watch(() => route.query.category, (newCategory) => {
-  if (newCategory) {
-    selectedCategory.value = newCategory
-  }
-})
 </script> 

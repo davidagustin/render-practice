@@ -1,175 +1,149 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
 
-export const useFurnitureStore = defineStore('furniture', () => {
-  // Furniture data
-  const furniture = ref([
-    {
-      id: 1,
-      name: "Modern Leather Sofa",
-      category: "Living Room",
-      price: 1299.99,
-      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop&crop=center",
-      description: "Elegant leather sofa with modern design, perfect for any living room. Features premium leather upholstery and sturdy construction.",
-      inStock: true,
-      rating: 4.8,
-      reviews: 124,
-      features: ["Premium leather", "Sturdy construction", "Modern design", "Comfortable seating"]
+export const useFurnitureStore = defineStore('furniture', {
+  state: () => ({
+    products: [
+      {
+        id: 1,
+        name: 'Modern Leather Sofa',
+        price: 1299,
+        category: 'living-room',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=300&fit=crop',
+        description: 'Elegant leather sofa with modern design, perfect for any living room.',
+        features: ['Premium leather', 'Sturdy frame', 'Comfortable cushions', 'Easy to clean'],
+        dimensions: '84" W x 35" D x 31" H',
+        colors: ['Brown', 'Black', 'Gray'],
+        inStock: true
+      },
+      {
+        id: 2,
+        name: 'Queen Size Bed Frame',
+        price: 899,
+        category: 'bedroom',
+        image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?w=500&h=300&fit=crop',
+        description: 'Contemporary queen size bed frame with upholstered headboard.',
+        features: ['Upholstered headboard', 'Solid wood frame', 'Easy assembly', 'Queen size'],
+        dimensions: '65" W x 85" L x 45" H',
+        colors: ['Gray', 'Beige', 'Navy'],
+        inStock: true
+      },
+      {
+        id: 3,
+        name: 'Dining Table Set',
+        price: 1499,
+        category: 'dining-room',
+        image: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=500&h=300&fit=crop',
+        description: 'Complete dining set with table and 6 chairs, perfect for family meals.',
+        features: ['Solid wood table', '6 matching chairs', 'Seats 6 people', 'Extendable'],
+        dimensions: '60" W x 36" D x 30" H',
+        colors: ['Oak', 'Walnut', 'White'],
+        inStock: true
+      },
+      {
+        id: 4,
+        name: 'Ergonomic Office Chair',
+        price: 399,
+        category: 'office',
+        image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
+        description: 'Professional ergonomic office chair with adjustable features.',
+        features: ['Ergonomic design', 'Adjustable height', 'Lumbar support', 'Breathable mesh'],
+        dimensions: '28" W x 28" D x 45" H',
+        colors: ['Black', 'Gray', 'Blue'],
+        inStock: true
+      },
+      {
+        id: 5,
+        name: 'Accent Armchair',
+        price: 599,
+        category: 'living-room',
+        image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&h=300&fit=crop',
+        description: 'Stylish accent chair with velvet upholstery and gold legs.',
+        features: ['Velvet upholstery', 'Gold metal legs', 'Comfortable seating', 'Statement piece'],
+        dimensions: '32" W x 32" D x 35" H',
+        colors: ['Emerald', 'Blush', 'Navy'],
+        inStock: true
+      },
+      {
+        id: 6,
+        name: 'Nightstand',
+        price: 299,
+        category: 'bedroom',
+        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop',
+        description: 'Modern nightstand with drawer storage and clean lines.',
+        features: ['Drawer storage', 'Clean design', 'Easy assembly', 'Versatile'],
+        dimensions: '20" W x 16" D x 24" H',
+        colors: ['White', 'Walnut', 'Black'],
+        inStock: true
+      },
+      {
+        id: 7,
+        name: 'Bookshelf',
+        price: 449,
+        category: 'living-room',
+        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop',
+        description: 'Tall bookshelf with multiple shelves for storage and display.',
+        features: ['5 shelves', 'Solid construction', 'Easy assembly', 'Versatile storage'],
+        dimensions: '36" W x 12" D x 72" H',
+        colors: ['White', 'Oak', 'Black'],
+        inStock: true
+      },
+      {
+        id: 8,
+        name: 'Coffee Table',
+        price: 349,
+        category: 'living-room',
+        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop',
+        description: 'Modern coffee table with storage shelf and clean design.',
+        features: ['Storage shelf', 'Clean lines', 'Sturdy construction', 'Versatile'],
+        dimensions: '48" W x 24" D x 18" H',
+        colors: ['White', 'Walnut', 'Black'],
+        inStock: true
+      }
+    ],
+    cart: []
+  }),
+
+  getters: {
+    cartItemCount: (state) => state.cart.length,
+    cartTotal: (state) => state.cart.reduce((total, item) => total + item.price, 0),
+    productsByCategory: (state) => (category) => {
+      return state.products.filter(product => product.category === category)
     },
-    {
-      id: 2,
-      name: "Oak Dining Table",
-      category: "Dining Room",
-      price: 899.99,
-      image: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&h=400&fit=crop&crop=center",
-      description: "Solid oak dining table that seats 6 people comfortably. Perfect for family gatherings and dinner parties.",
-      inStock: true,
-      rating: 4.6,
-      reviews: 89,
-      features: ["Solid oak wood", "Seats 6 people", "Natural finish", "Durable construction"]
-    },
-    {
-      id: 3,
-      name: "Queen Size Bed Frame",
-      category: "Bedroom",
-      price: 649.99,
-      image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&h=400&fit=crop&crop=center",
-      description: "Elegant queen size bed frame with upholstered headboard. Creates a luxurious bedroom atmosphere.",
-      inStock: true,
-      rating: 4.7,
-      reviews: 156,
-      features: ["Queen size", "Upholstered headboard", "Easy assembly", "Modern design"]
-    },
-    {
-      id: 4,
-      name: "Ergonomic Office Chair",
-      category: "Office",
-      price: 299.99,
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&crop=center",
-      description: "Comfortable ergonomic office chair with adjustable features. Perfect for long work hours.",
-      inStock: true,
-      rating: 4.9,
-      reviews: 203,
-      features: ["Ergonomic design", "Adjustable height", "Lumbar support", "Breathable mesh"]
-    },
-    {
-      id: 5,
-      name: "Coffee Table",
-      category: "Living Room",
-      price: 399.99,
-      image: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=600&h=400&fit=crop&crop=center",
-      description: "Modern coffee table with storage shelf. Functional and stylish addition to your living room.",
-      inStock: false,
-      rating: 4.5,
-      reviews: 67,
-      features: ["Storage shelf", "Modern design", "Sturdy construction", "Easy to clean"]
-    },
-    {
-      id: 6,
-      name: "Bookshelf",
-      category: "Office",
-      price: 199.99,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
-      description: "Versatile bookshelf perfect for organizing books and decor. Fits any room style.",
-      inStock: true,
-      rating: 4.4,
-      reviews: 92,
-      features: ["5 shelves", "Versatile design", "Easy assembly", "Sturdy construction"]
-    },
-    {
-      id: 7,
-      name: "Accent Armchair",
-      category: "Living Room",
-      price: 549.99,
-      image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=400&fit=crop&crop=center",
-      description: "Stylish accent armchair perfect for reading nooks and living spaces. Adds character to any room.",
-      inStock: true,
-      rating: 4.7,
-      reviews: 78,
-      features: ["Accent design", "Comfortable seating", "Quality fabric", "Compact size"]
-    },
-    {
-      id: 8,
-      name: "Nightstand",
-      category: "Bedroom",
-      price: 249.99,
-      image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=600&h=400&fit=crop&crop=center",
-      description: "Elegant nightstand with drawer storage and modern design. Perfect bedside companion.",
-      inStock: true,
-      rating: 4.6,
-      reviews: 45,
-      features: ["Drawer storage", "Modern design", "Perfect height", "Easy assembly"]
+    featuredProducts: (state) => {
+      return state.products.slice(0, 4)
     }
-  ])
+  },
 
-  // Cart state
-  const cart = ref([])
-
-  // Computed properties
-  const categories = computed(() => {
-    return [...new Set(furniture.value.map(item => item.category))]
-  })
-
-  const cartItemCount = computed(() => {
-    return cart.value.length
-  })
-
-  const cartTotal = computed(() => {
-    return cart.value.reduce((total, item) => total + item.price, 0).toFixed(2)
-  })
-
-  const featuredProducts = computed(() => {
-    return furniture.value.filter(item => item.rating >= 4.5).slice(0, 4)
-  })
-
-  // Actions
-  const addToCart = (product) => {
-    cart.value.push(product)
-  }
-
-  const removeFromCart = (productId) => {
-    const index = cart.value.findIndex(item => item.id === productId)
-    if (index > -1) {
-      cart.value.splice(index, 1)
+  actions: {
+    addToCart(product) {
+      const existingItem = this.cart.find(item => item.id === product.id)
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1
+      } else {
+        this.cart.push({ ...product, quantity: 1 })
+      }
+    },
+    
+    removeFromCart(productId) {
+      const index = this.cart.findIndex(item => item.id === productId)
+      if (index > -1) {
+        this.cart.splice(index, 1)
+      }
+    },
+    
+    updateQuantity(productId, quantity) {
+      const item = this.cart.find(item => item.id === productId)
+      if (item) {
+        if (quantity <= 0) {
+          this.removeFromCart(productId)
+        } else {
+          item.quantity = quantity
+        }
+      }
+    },
+    
+    clearCart() {
+      this.cart = []
     }
-  }
-
-  const getProductById = (id) => {
-    return furniture.value.find(item => item.id === parseInt(id))
-  }
-
-  const getProductsByCategory = (category) => {
-    if (category === 'all') return furniture.value
-    return furniture.value.filter(item => item.category === category)
-  }
-
-  const searchProducts = (query) => {
-    const lowercaseQuery = query.toLowerCase()
-    return furniture.value.filter(item => 
-      item.name.toLowerCase().includes(lowercaseQuery) ||
-      item.description.toLowerCase().includes(lowercaseQuery) ||
-      item.category.toLowerCase().includes(lowercaseQuery)
-    )
-  }
-
-  const filterByPrice = (minPrice, maxPrice) => {
-    return furniture.value.filter(item => 
-      item.price >= minPrice && item.price <= maxPrice
-    )
-  }
-
-  return {
-    furniture,
-    cart,
-    categories,
-    cartItemCount,
-    cartTotal,
-    featuredProducts,
-    addToCart,
-    removeFromCart,
-    getProductById,
-    getProductsByCategory,
-    searchProducts,
-    filterByPrice
   }
 }) 

@@ -1,75 +1,37 @@
-# Elegant Furniture Store
+# 🪑 Elegant Furniture Store
 
-A modern, responsive furniture store website built with Vue.js 3, Vite, and Tailwind CSS. This is a static website optimized for fast loading and excellent user experience.
-
-## 🚀 Live Demo
-
-**Live Website**: [https://render-practice-h1t2.onrender.com](https://render-practice-h1t2.onrender.com)
-
-## 📊 Deployment Status
-
-| Status | Environment | URL |
-|--------|-------------|-----|
-| ✅ **Live** | Production | [https://render-practice-h1t2.onrender.com](https://render-practice-h1t2.onrender.com) |
-| 🔄 **Development** | Local | `http://localhost:3000` |
+A modern, responsive furniture store built with Vue.js 3, Vite, and Tailwind CSS. This static website showcases a beautiful collection of premium furniture with a seamless shopping experience.
 
 ## ✨ Features
 
-- **Modern Design**: Clean, elegant interface with responsive design
-- **Product Catalog**: Browse furniture by category with detailed product pages
-- **Search & Filter**: Find products by name, category, and price range
+- **Modern Design**: Clean, elegant UI with responsive design
+- **Product Catalog**: Browse furniture by category with search and filtering
 - **Shopping Cart**: Add items to cart with real-time updates
-- **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **Fast Loading**: Optimized for performance with Vite build tool
-- **SEO Friendly**: Proper meta tags and semantic HTML structure
+- **Product Details**: Detailed product pages with specifications
+- **Client-side Routing**: Smooth navigation with Vue Router
+- **State Management**: Pinia store for cart and product management
+- **Responsive**: Mobile-first design that works on all devices
+- **Fast Performance**: Optimized with Vite for lightning-fast builds
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Vue.js 3 (Composition API)
+- **Frontend Framework**: Vue.js 3 (Composition API)
 - **Build Tool**: Vite 4
 - **Styling**: Tailwind CSS 3
 - **State Management**: Pinia 2
 - **Routing**: Vue Router 4
 - **Deployment**: Render (Static Site)
 
-## 📁 Project Structure
+## 🚀 Live Demo
 
-```
-elegant-furniture-store/
-├── src/
-│   ├── components/          # Vue components
-│   ├── views/              # Page components
-│   │   ├── Home.vue        # Homepage
-│   │   ├── Products.vue    # Product catalog
-│   │   ├── ProductDetail.vue # Individual product page
-│   │   └── About.vue       # About page
-│   ├── stores/             # Pinia stores
-│   │   └── furniture.js    # Furniture data and cart state
-│   ├── router/             # Vue Router configuration
-│   ├── style.css           # Global styles
-│   └── main.js             # App entry point
-├── public/                 # Static assets
-├── index.html              # HTML template
-├── package.json            # Dependencies and scripts
-├── vite.config.js          # Vite configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-├── postcss.config.js       # PostCSS configuration
-└── render.yaml             # Render deployment configuration
-```
+Visit the live website: [Elegant Furniture Store](https://your-render-url.onrender.com)
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
+## 📦 Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/davidagustin/render-practice.git
-   cd render-practice
+   git clone https://github.com/yourusername/elegant-furniture-store.git
+   cd elegant-furniture-store
    ```
 
 2. **Install dependencies**
@@ -85,7 +47,7 @@ elegant-furniture-store/
 4. **Open your browser**
    Navigate to `http://localhost:3000`
 
-### Build for Production
+## 🏗️ Build for Production
 
 ```bash
 npm run build
@@ -93,124 +55,157 @@ npm run build
 
 The built files will be in the `dist/` directory.
 
-### Preview Production Build
+## 📁 Project Structure
 
-```bash
-npm run preview
 ```
-
-## 📱 Pages & Features
-
-### Homepage (`/`)
-- Hero section with call-to-action
-- Featured products showcase
-- Category navigation
-- Company values and features
-
-### Products (`/products`)
-- Complete product catalog
-- Search functionality
-- Category and price filtering
-- Sorting options (name, price, rating)
-- Product cards with ratings and stock status
-
-### Product Detail (`/product/:id`)
-- Detailed product information
-- High-quality product images
-- Feature list
-- Related products
-- Add to cart functionality
-
-### About (`/about`)
-- Company story and mission
-- Team information
-- Contact details
-- Company values
-
-### Shopping Cart
-- Slide-out cart sidebar
-- Add/remove items
-- Real-time total calculation
-- Checkout button (demo)
+elegant-furniture-store/
+├── src/
+│   ├── components/          # Vue components
+│   ├── views/              # Page components
+│   │   ├── Home.vue        # Homepage
+│   │   ├── Products.vue    # Product catalog
+│   │   ├── ProductDetail.vue # Product details
+│   │   └── About.vue       # About page
+│   ├── stores/             # Pinia stores
+│   │   └── furniture.js    # Product and cart store
+│   ├── router/             # Vue Router configuration
+│   │   └── index.js
+│   ├── App.vue             # Main app component
+│   ├── main.js             # App entry point
+│   └── style.css           # Global styles
+├── public/                 # Static assets
+├── index.html              # HTML template
+├── package.json            # Dependencies and scripts
+├── vite.config.js          # Vite configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+├── postcss.config.js       # PostCSS configuration
+├── render.yaml             # Render deployment config
+└── README.md               # Project documentation
+```
 
 ## 🎨 Design System
 
 ### Colors
-- **Primary**: Gray scale (`primary-50` to `primary-900`)
-- **Accent**: Orange scale (`accent-50` to `accent-900`)
-- **Neutral**: Standard gray scale
+- **Primary**: Gray scale (50-900)
+- **Accent**: Orange scale (50-900)
+- **Background**: Light gray (#f9fafb)
 
 ### Typography
-- **Font**: Inter (Google Fonts)
+- **Font Family**: Inter (Google Fonts)
 - **Weights**: 300, 400, 500, 600, 700
 
 ### Components
 - **Buttons**: Primary and secondary variants
 - **Cards**: Product cards with hover effects
 - **Forms**: Input fields with focus states
-- **Navigation**: Responsive header with mobile support
+- **Navigation**: Responsive header with cart
+
+## 🛍️ Features Overview
+
+### Homepage
+- Hero section with call-to-action
+- Featured products showcase
+- Category browsing
+- Company values and features
+
+### Product Catalog
+- Search functionality
+- Category filtering
+- Price range filtering
+- Sort by name, price (low/high)
+- Responsive product grid
+
+### Product Details
+- High-quality product images
+- Detailed specifications
+- Feature lists
+- Related products
+- Add to cart functionality
+
+### Shopping Cart
+- Sidebar cart with slide animation
+- Add/remove items
+- Real-time total calculation
+- Checkout button (placeholder)
 
 ## 🚀 Deployment
 
-### Render (Recommended)
+This project is configured for deployment on Render as a Static Site.
 
-This project is configured for easy deployment on Render:
+### Render Deployment Steps
 
-1. **Connect your GitHub repository** to Render
-2. **Create a new Static Site** service
-3. **Configure the build settings**:
-   - **Build Command**: `npm install && npm run build`
+1. **Connect Repository**
+   - Link your GitHub repository to Render
+   - Select the repository: `elegant-furniture-store`
+
+2. **Configure Build Settings**
+   - **Build Command**: `npm ci && npm run build`
    - **Publish Directory**: `dist`
-4. **Deploy automatically** on every push to main branch
+   - **Environment**: Static Site
 
-### Other Platforms
+3. **Deploy**
+   - Render will automatically build and deploy your site
+   - Your site will be available at: `https://your-app-name.onrender.com`
 
-The static build can be deployed to any static hosting service:
-- Netlify
-- Vercel
-- GitHub Pages
-- AWS S3 + CloudFront
-- Firebase Hosting
+### Manual Deployment
 
-## 📊 Performance
+If you prefer to deploy manually:
 
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
+```bash
+# Build the project
+npm run build
 
-## 🔧 Customization
+# The dist/ folder contains your static files
+# Upload these files to your hosting provider
+```
+
+## 🔧 Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
 
 ### Adding New Products
 
-Edit `src/stores/furniture.js` to add new products:
+To add new products, edit `src/stores/furniture.js`:
 
 ```javascript
 {
   id: 9,
-  name: "New Product Name",
-  category: "Category Name",
-  price: 299.99,
-  image: "https://images.unsplash.com/...",
-  description: "Product description...",
-  inStock: true,
-  rating: 4.5,
-  reviews: 50,
-  features: ["Feature 1", "Feature 2", "Feature 3"]
+  name: 'New Product Name',
+  price: 599,
+  category: 'living-room',
+  image: 'https://images.unsplash.com/...',
+  description: 'Product description...',
+  features: ['Feature 1', 'Feature 2'],
+  dimensions: '48" W x 24" D x 18" H',
+  colors: ['White', 'Black'],
+  inStock: true
 }
 ```
 
-### Styling Changes
+### Customizing Styles
 
-- **Colors**: Modify `tailwind.config.js`
-- **Components**: Edit `src/style.css`
-- **Layout**: Update individual Vue components
+- Edit `src/style.css` for global styles
+- Modify `tailwind.config.js` for theme customization
+- Component-specific styles can be added in individual `.vue` files
 
-### Adding New Pages
+## 📱 Responsive Design
 
-1. Create new component in `src/views/`
-2. Add route in `src/router/index.js`
-3. Update navigation in `src/App.vue`
+The website is fully responsive with breakpoints:
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
+
+## 🔍 SEO Features
+
+- Meta tags for social sharing
+- Semantic HTML structure
+- Optimized images with alt text
+- Fast loading times
+- Mobile-friendly design
 
 ## 🤝 Contributing
 
@@ -224,10 +219,19 @@ Edit `src/stores/furniture.js` to add new products:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🙏 Acknowledgments
+
+- [Vue.js](https://vuejs.org/) - Progressive JavaScript framework
+- [Vite](https://vitejs.dev/) - Next generation frontend tooling
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Pinia](https://pinia.vuejs.org/) - Intuitive, type safe store for Vue
+- [Unsplash](https://unsplash.com/) - Beautiful free images
+- [Render](https://render.com/) - Cloud application hosting platform
+
 ## 📞 Support
 
-For support, email hello@elegantfurniture.com or create an issue in this repository.
+If you have any questions or need help, please open an issue on GitHub or contact us at support@elegantfurniture.com.
 
 ---
 
-**Built with ❤️ using Vue.js and Tailwind CSS** # Trigger deployment Sun Jul 27 05:31:13 PDT 2025
+**Built with ❤️ using Vue.js and modern web technologies** 
