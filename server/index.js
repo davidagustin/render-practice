@@ -159,7 +159,10 @@ app.get('/api/categories', (req, res) => {
 
 // Serve Vue app for all other routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  const indexPath = require('fs').existsSync(path.join(__dirname, '../build/index.html')) 
+    ? path.join(__dirname, '../build/index.html')
+    : path.join(__dirname, '../client/dist/index.html');
+  res.sendFile(indexPath);
 });
 
 app.listen(PORT, () => {
