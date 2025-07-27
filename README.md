@@ -8,6 +8,16 @@ A modern, responsive furniture store built with Vue.js and Node.js, designed to 
 
 Experience the full furniture store with all features including product browsing, search, filtering, and shopping cart functionality.
 
+## 📊 Deployment Status
+
+| Status | Environment | URL |
+|--------|-------------|-----|
+| ✅ **Live** | Production | [https://render-practice-h1t2.onrender.com/](https://render-practice-h1t2.onrender.com/) |
+| 🔄 **Development** | Local | `http://localhost:3000` |
+
+**Last Deployed**: July 27, 2025  
+**Repository**: [https://github.com/davidagustin/render-practice](https://github.com/davidagustin/render-practice)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -18,10 +28,9 @@ Experience the full furniture store with all features including product browsing
 ### Local Development
 ```bash
 # Clone and install
-git clone <your-repo-url>
+git clone https://github.com/davidagustin/render-practice.git
 cd render-practice
-npm install
-cd client && npm install && cd ..
+npm run install-all
 
 # Start development servers
 npm run dev

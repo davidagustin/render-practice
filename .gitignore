@@ -95,4 +95,22 @@ Thumbs.db
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Vite cache
+.vite/
+
+# Local development
+*.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+
+# Render specific
+.render-buildlogs/ 
