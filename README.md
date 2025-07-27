@@ -4,7 +4,14 @@ A modern, responsive furniture store website built with Vue.js 3, Vite, and Tail
 
 ## 🚀 Live Demo
 
-**Live Website**: [https://elegant-furniture-store.onrender.com](https://elegant-furniture-store.onrender.com)
+**Live Website**: [https://render-practice-h1t2.onrender.com](https://render-practice-h1t2.onrender.com)
+
+## 📊 Deployment Status
+
+| Status | Environment | URL |
+|--------|-------------|-----|
+| ✅ **Live** | Production | [https://render-practice-h1t2.onrender.com](https://render-practice-h1t2.onrender.com) |
+| 🔄 **Development** | Local | `http://localhost:3000` |
 
 ## ✨ Features
 
