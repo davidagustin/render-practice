@@ -2,7 +2,7 @@ services:
   - type: web
     name: elegant-furniture-store
     runtime: static
-    buildCommand: npm ci && npm run build && ls -la dist/
+    buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: NODE_ENV
